@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vahid Soleimani | Principal 3D Computer Vision Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0f14;
+            --bg-secondary: #111920;
+            --bg-card: #161d26;
+            --text-primary: #e8edf3;
+            --text-secondary: #8a99a8;
+            --text-muted: #5a6a7a;
+            --accent: #00d4aa;
+            --accent-dim: rgba(0, 212, 170, 0.15);
+            --accent-glow: rgba(0, 212, 170, 0.4);
+            --border: #232d38;
+            --font-mono: 'IBM Plex Mono', monospace;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-serif);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* Subtle grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 170, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 170, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 0;
+            background: rgba(10, 15, 20, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text {
+            /* Text content container */
+        }
+
+        .hero-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px var(--accent-dim);
+            position: relative;
+        }
+
+        .hero-photo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--accent), transparent 50%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-title {
+            font-family: var(--font-mono);
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            padding-left: 52px;
+        }
+
+        .hero-summary {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 48px;
+            font-weight: 300;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero-link {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 12px 24px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-link:hover {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        .hero-link.primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .hero-link.primary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .about-text p:first-of-type {
+            font-size: 20px;
+            color: var(--text-primary);
+            font-weight: 300;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-family: var(--font-mono);
+            font-size: 36px;
+            color: var(--accent);
+            font-weight: 600;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            padding-bottom: 48px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 8px;
+            width: 9px;
+            height: 9px;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .timeline-company {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .timeline-role {
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .timeline-desc ul {
+            margin-top: 12px;
+            padding-left: 20px;
+        }
+
+        .timeline-desc li {
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .skill-category h3 {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            font-size: 15px;
+            color: var(--text-secondary);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(35, 45, 56, 0.5);
+            transition: color 0.3s ease;
+        }
+
+        .skill-list li:hover {
+            color: var(--text-primary);
+        }
+
+        /* Publications Section */
+        .pub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .pub-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .pub-item:hover {
+            border-color: var(--accent);
+        }
+
+        .pub-title {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .pub-meta {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .pub-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            text-decoration: none;
+            margin-top: 12px;
+        }
+
+        .pub-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Education Section */
+        .edu-grid {
+            display: grid;
+            gap: 32px;
+        }
+
+        .edu-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .edu-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .edu-years {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .edu-degree {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 6px;
+        }
+
+        .edu-school {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent);
+        }
+
+        /* Awards Section */
+        .awards-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .award-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .award-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-dim);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .award-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .contact-email {
+            font-family: var(--font-mono);
+            font-size: 24px;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-block;
+            padding: 16px 32px;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 48px;
+        }
+
+        .contact-email:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .social-link {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-photo {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto 32px;
+                order: -1;
+            }
+
+            .hero-label {
+                justify-content: center;
+            }
+
+            .hero-label::before {
+                display: none;
+            }
+
+            .hero-title {
+                padding-left: 0;
+            }
+
+            .hero-links {
+                justify-content: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .edu-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .awards-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="nav-logo">VS</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-label">Principal Engineer</div>
+                <h1>Vahid <span>Soleimani</span></h1>
+                <p class="hero-title">Director of Engineering & Principal 3D Computer Vision (SLAM) Engineer</p>
+                <p class="hero-summary">
+                    PhD-qualified computer vision researcher with 20+ years of combined academic and industrial experience 
+                    in AI algorithm development, SLAM systems, and embedded systems design.
+                </p>
+                <div class="hero-links">
+                    <a href="mailto:soleimani1639@gmail.com" class="hero-link primary">Get In Touch</a>
+                    <a href="https://www.linkedin.com/in/vahidsoleimani/" class="hero-link" target="_blank">LinkedIn</a>
+                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="hero-link" target="_blank">Google Scholar</a>
+                    <a href="https://github.com/BristolVisualPFT/3D_Data_Acquisition_Registration_Using_Kinects" class="hero-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+            <div class="hero-photo">
+                <img src="https://drive.google.com/uc?export=view&id=1AIBPqvV-LRlEjulF8H82GftyIgT_3kX1" alt="Vahid Soleimani">
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">01 — About</p>
+                <h2 class="section-title">Background</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I am a Principal Computer Engineer with over two decades of combined academic 
+                        and industrial experience in artificial intelligence algorithm development and 
+                        embedded systems design.
+                    </p>
+                    <p>
+                        Currently serving as Director of Engineering at Kudan, I lead the development of 
+                        cutting-edge SLAM (Simultaneous Localisation and Mapping) systems for industrial 
+                        applications. My expertise spans computer vision, signal processing, and machine 
+                        learning, with deep proficiency in C++/OpenCV and MATLAB.
+                    </p>
+                    <p>
+                        Prior to my industry career, I spent nearly a decade as an academic lecturer, 
+                        teaching topics ranging from fundamental principles to advanced concepts in 
+                        algorithm design and AI programming.
+                    </p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">7+</div>
+                        <div class="stat-label">Years in SLAM</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">Years Academic</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Publications</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">02 — Experience</p>
+                <h2 class="section-title">Career Journey</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <p class="timeline-date">January 2025 — Present</p>
+                    <p class="timeline-company">Kudan</p>
+                    <h3 class="timeline-role">Director of Engineering & Principal 3D Computer Vision Engineer</h3>
+                    <div class="timeline-desc">
+                        <p>Leading engineering teams and driving innovation in SLAM and perception systems for industrial applications.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <p class="timeline-date">February 2024 — March 2025</p>
+                    <p class="timeline-company">Kudan</p>
+                    <h3 class="timeline-role">Head of Software Development Team</h3>
+                    <div class="timeline-desc">
+                        <p>Managed software development initiatives and coordinated cross-functional engineering efforts.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <p class="timeline-date">April 2023 — January 2024</p>
+                    <p class="timeline-company">Kudan</p>
+                    <h3 class="timeline-role">SLAM Team Lead</h3>
+                    <div class="timeline-desc">
+                        <p>Led specialised SLAM development team, overseeing technical direction and delivery of core algorithms.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <p class="timeline-date">September 2018 — July 2020</p>
+                    <p class="timeline-company">Kudan</p>
+                    <h3 class="timeline-role">3D Computer Vision (SLAM) R&D Engineer</h3>
+                    <div class="timeline-desc">
+                        <p>Developed state-of-the-art SLAM systems for industrial applications.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <p class="timeline-date">July 2014 — July 2018</p>
+                    <p class="timeline-company">University of Bristol</p>
+                    <h3 class="timeline-role">PhD Researcher — EPSRC SPHERE Project</h3>
+                    <div class="timeline-desc">
+                        <p>Conducted research in video monitoring work package. Also served as Teaching Support Assistant for Image Processing, Computer Vision, C Programming, and Signals courses.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <p class="timeline-date">September 2008 — July 2014</p>
+                    <p class="timeline-company">Razi University</p>
+                    <h3 class="timeline-role">Faculty Member & Lecturer</h3>
+                    <div class="timeline-desc">
+                        <p>Taught wide range of computer engineering topics from fundamentals to advanced AI and algorithm design.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <p class="timeline-date">August 2002 — February 2005</p>
+                    <p class="timeline-company">Hoorpendar Computer Technology Industries</p>
+                    <h3 class="timeline-role">Senior C++ Embedded Software Engineer</h3>
+                    <div class="timeline-desc">
+                        <p>Developed embedded systems for dams, power stations, and industrial facilities including:</p>
+                        <ul>
+                            <li>Data loggers for dam hydro-generator monitoring</li>
+                            <li>Programmable turbine water-gate controllers</li>
+                            <li>Fibre-optic data transmission systems</li>
+                            <li>Weather monitoring systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">03 — Skills</p>
+                <h2 class="section-title">Technical Expertise</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Core Domains</h3>
+                    <ul class="skill-list">
+                        <li>Computer Vision</li>
+                        <li>SLAM Systems</li>
+                        <li>3D Perception</li>
+                        <li>Signal Processing</li>
+                        <li>Machine Learning</li>
+                        <li>Embedded Systems</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Languages & Tools</h3>
+                    <ul class="skill-list">
+                        <li>C++ / Modern C++</li>
+                        <li>OpenCV</li>
+                        <li>MATLAB</li>
+                        <li>Python</li>
+                        <li>Git</li>
+                        <li>CMake</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Specialisations</h3>
+                    <ul class="skill-list">
+                        <li>Visual SLAM</li>
+                        <li>Sensor Fusion</li>
+                        <li>Real-time Systems</li>
+                        <li>Algorithm Design</li>
+                        <li>Research & Development</li>
+                        <li>Technical Leadership</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">04 — Publications</p>
+                <h2 class="section-title">Research Work</h2>
+            </div>
+            <div class="pub-list">
+                <div class="pub-item">
+                    <h3 class="pub-title">Remote, Depth-based Lung Function Assessment</h3>
+                    <p class="pub-meta">Computer Vision for Health Monitoring</p>
+                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="pub-link" target="_blank">View on Scholar →</a>
+                </div>
+                <div class="pub-item">
+                    <h3 class="pub-title">Remote Pulmonary Function Testing — Computer Gaming in the Respiratory World</h3>
+                    <p class="pub-meta">Medical Imaging & Computer Vision</p>
+                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="pub-link" target="_blank">View on Scholar →</a>
+                </div>
+                <div class="pub-item">
+                    <h3 class="pub-title">Natural Colour Image Matting using Asynchronous Cellular Automata</h3>
+                    <p class="pub-meta">Image Processing</p>
+                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="pub-link" target="_blank">View on Scholar →</a>
+                </div>
+                <div class="pub-item">
+                    <h3 class="pub-title">Ant Colony Alpha Matte: A New Approach for Natural Image Matting</h3>
+                    <p class="pub-meta">Computer Vision & Optimisation</p>
+                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="pub-link" target="_blank">View on Scholar →</a>
+                </div>
+                <div class="pub-item">
+                    <h3 class="pub-title">Persian Sign Language Recognition using Rule-based Techniques and Neural Networks</h3>
+                    <p class="pub-meta">Pattern Recognition & Deep Learning</p>
+                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="pub-link" target="_blank">View on Scholar →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">05 — Education</p>
+                <h2 class="section-title">Academic Background</h2>
+            </div>
+            <div class="edu-grid">
+                <div class="edu-item">
+                    <p class="edu-years">2014 — 2018</p>
+                    <div>
+                        <h3 class="edu-degree">Doctor of Philosophy (PhD) — Computer Science, Computer Vision</h3>
+                        <p class="edu-school">University of Bristol, United Kingdom</p>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <p class="edu-years">2002 — 2005</p>
+                    <div>
+                        <h3 class="edu-degree">Master of Science (MSc) — Artificial Intelligence and Robotics</h3>
+                        <p class="edu-school">Amirkabir University of Technology (Tehran Polytechnic), Iran</p>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <p class="edu-years">1998 — 2002</p>
+                    <div>
+                        <h3 class="edu-degree">Bachelor of Engineering (BEng) — Computer Hardware Engineering</h3>
+                        <p class="edu-school">Shahid Beheshti University, Iran</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">06 — Recognition</p>
+                <h2 class="section-title">Awards & Honours</h2>
+            </div>
+            <div class="awards-list">
+                <div class="award-item">
+                    <div class="award-icon">★</div>
+                    <p class="award-text">1st Poster Award at 20th BMVA Computer Vision Summer School</p>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">★</div>
+                    <p class="award-text">University of Bristol Alumni Scholarship</p>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">★</div>
+                    <p class="award-text">Conference Best Paper Award (x3)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">07 — Contact</p>
+                <h2 class="section-title">Get In Touch</h2>
+            </div>
+            <div class="contact-content">
+                <p>
+                    Interested in collaborating on computer vision projects, discussing SLAM technologies, 
+                    or exploring research opportunities? I'd love to hear from you.
+                </p>
+                <a href="/cdn-cgi/l/email-protection#acdfc3c0c9c5c1cdc2c59d9a9f95eccbc1cdc5c082cfc3c1" class="contact-email"><span class="__cf_email__" data-cfemail="9fecf0f3faf6f2fef1f6aea9aca6dff8f2fef6f3b1fcf0f2">[email&#160;protected]</span></a>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/vahidsoleimani/" class="social-link" target="_blank">LinkedIn</a>
+                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="social-link" target="_blank">Google Scholar</a>
+                    <a href="https://github.com/BristolVisualPFT/3D_Data_Acquisition_Registration_Using_Kinects" class="social-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
