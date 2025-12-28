@@ -197,12 +197,30 @@
             font-family: var(--font-mono);
             font-size: 18px;
             color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .hero-company {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--text-muted);
             margin-bottom: 32px;
-            padding-left: 52px;
+        }
+
+        .hero-company a {
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .hero-company a:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
         }
 
         .hero-summary {
-            font-size: 20px;
+            font-size: 19px;
             color: var(--text-secondary);
             max-width: 700px;
             margin-bottom: 48px;
@@ -212,16 +230,16 @@
 
         .hero-links {
             display: flex;
-            gap: 20px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .hero-link {
             font-family: var(--font-mono);
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-primary);
             text-decoration: none;
-            padding: 14px 28px;
+            padding: 12px 20px;
             border: 1px solid var(--border);
             border-radius: 4px;
             transition: all 0.3s ease;
@@ -276,7 +294,7 @@
         /* About Section */
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 200px;
             gap: 60px;
             align-items: start;
         }
@@ -284,18 +302,14 @@
         .about-text p {
             color: var(--text-secondary);
             margin-bottom: 20px;
-        }
-
-        .about-text p:first-of-type {
-            font-size: 20px;
-            color: var(--text-primary);
-            font-weight: 300;
+            font-size: 17px;
+            line-height: 1.8;
         }
 
         .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .stat-card {
@@ -327,20 +341,46 @@
             position: relative;
         }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: var(--border);
+        .timeline-company-group {
+            margin-bottom: 48px;
+        }
+
+        .timeline-company-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .timeline-company-name {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        .timeline-company-duration {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .timeline-roles {
+            position: relative;
+            padding-left: 24px;
+            border-left: 1px solid var(--border);
         }
 
         .timeline-item {
             position: relative;
-            padding-left: 40px;
-            padding-bottom: 48px;
+            padding-left: 24px;
+            padding-bottom: 32px;
         }
 
         .timeline-item:last-child {
@@ -350,7 +390,7 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -4px;
+            left: -28px;
             top: 8px;
             width: 9px;
             height: 9px;
@@ -363,20 +403,14 @@
             font-family: var(--font-mono);
             font-size: 12px;
             color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .timeline-company {
-            font-family: var(--font-mono);
-            font-size: 14px;
-            color: var(--accent);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .timeline-role {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 400;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
         }
 
         .timeline-desc {
@@ -399,7 +433,7 @@
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
+            gap: 40px 32px;
         }
 
         .skill-category h3 {
@@ -451,7 +485,7 @@
         .pub-title {
             font-size: 18px;
             font-weight: 400;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             line-height: 1.4;
         }
 
@@ -459,6 +493,13 @@
             font-family: var(--font-mono);
             font-size: 12px;
             color: var(--text-muted);
+        }
+
+        .pub-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 12px;
         }
 
         .pub-link {
@@ -551,7 +592,7 @@
         /* Contact Section */
         .contact-content {
             text-align: center;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
@@ -561,39 +602,42 @@
             margin-bottom: 40px;
         }
 
-        .contact-email {
-            font-family: var(--font-mono);
-            font-size: 24px;
-            color: var(--accent);
-            text-decoration: none;
-            display: inline-block;
-            padding: 16px 32px;
-            border: 2px solid var(--accent);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            margin-bottom: 48px;
-        }
-
-        .contact-email:hover {
-            background: var(--accent);
-            color: var(--bg-primary);
-        }
-
-        .social-links {
+        .contact-buttons {
             display: flex;
             justify-content: center;
-            gap: 24px;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .social-link {
+        .contact-btn {
             font-family: var(--font-mono);
-            font-size: 13px;
-            color: var(--text-muted);
+            font-size: 14px;
+            color: var(--text-primary);
             text-decoration: none;
-            transition: color 0.3s ease;
+            padding: 14px 28px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
         }
 
-        .social-link:hover {
+        .contact-btn:hover {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        .contact-btn.primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .contact-btn.primary:hover {
+            background: transparent;
             color: var(--accent);
         }
 
@@ -636,10 +680,6 @@
                 display: none;
             }
 
-            .hero-title {
-                padding-left: 0;
-            }
-
             .hero-links {
                 justify-content: center;
             }
@@ -673,7 +713,7 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <a href="#" class="nav-logo">VS</a>
+            <a href="#" class="nav-logo">Vahid Soleimani</a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -693,14 +733,15 @@
                 <div class="hero-label">Principal Engineer</div>
                 <h1>Vahid <span>Soleimani</span></h1>
                 <p class="hero-title">Director of Engineering & Principal 3D Computer Vision (SLAM) Engineer</p>
+                <p class="hero-company"><a href="https://www.kudan.io/" target="_blank">Kudan Computer Vision and Artificial Perception Ltd</a>, Bristol, UK</p>
                 <p class="hero-summary">
-                    PhD-qualified computer vision researcher with 20+ years of combined academic and industrial experience 
-                    in AI algorithm development, SLAM systems, and embedded systems design.
+                    Senior engineering leader and computer vision researcher with 20+ years at the intersection of academia and industry. I architect SLAM and 3D perception systems that enable machines to autonomously navigate the physical world.
                 </p>
                 <div class="hero-links">
-                    <a href="/cdn-cgi/l/email-protection#fd8e92919894909c9394cccbcec4bd9a909c9491d39e9290" class="hero-link primary">Get In Touch</a>
+                    <a href="#" class="hero-link primary" onclick="window.location.href='mai'+'lto:'+'soleimani1639'+'@'+'gmail.com'; return false;">Get In Touch</a>
                     <a href="https://www.linkedin.com/in/vahidsoleimani/" class="hero-link" target="_blank">LinkedIn</a>
                     <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="hero-link" target="_blank">Google Scholar</a>
+                    <a href="https://www.researchgate.net/profile/Vahid-Soleimani-2" class="hero-link" target="_blank">ResearchGate</a>
                     <a href="https://github.com/BristolVisualPFT/3D_Data_Acquisition_Registration_Using_Kinects" class="hero-link" target="_blank">GitHub</a>
                 </div>
             </div>
@@ -721,20 +762,13 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I am a Principal Computer Engineer with over two decades of combined academic 
-                        and industrial experience in artificial intelligence algorithm development and 
-                        embedded systems design.
+                        Principal Computer Vision Engineer with a PhD in Computer Vision from the University of Bristol and over 20 years of combined academic and industrial experience in AI algorithm development and applied research. My expertise centres on Visual and Lidar SLAM, 3D perception, and sensor fusion—designing real-time localisation and mapping systems for robotics, AR/VR, and autonomous navigation. I combine rigorous mathematical foundations with hands-on efficient implementation to deliver robust, production-grade solutions.
                     </p>
                     <p>
-                        Currently serving as Director of Engineering at Kudan, I lead the development of 
-                        cutting-edge SLAM (Simultaneous Localisation and Mapping) systems for industrial 
-                        applications. My expertise spans computer vision, signal processing, and machine 
-                        learning, with deep proficiency in C++/OpenCV and MATLAB.
+                        As Director of Engineering at Kudan, I lead cross-functional teams in architecting mapping and localisation systems that enable machines to autonomously navigate the physical world. My role bridges technical strategy with delivery—translating cutting-edge research into scalable, industrial-strength products while mentoring engineers and shaping the technical roadmap.
                     </p>
                     <p>
-                        Prior to my industry career, I spent nearly a decade as an academic lecturer, 
-                        teaching topics ranging from fundamental principles to advanced concepts in 
-                        algorithm design and AI programming.
+                        Prior to my industry career, I spent nearly a decade as an academic lecturer at Razi University, teaching topics ranging from fundamental principles to advanced concepts in algorithm design and AI programming. This academic foundation strengthens my ability to communicate complex technical concepts and mentor engineering teams.
                     </p>
                 </div>
                 <div class="stats-grid">
@@ -747,11 +781,11 @@
                         <div class="stat-label">Years in SLAM</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">9</div>
+                        <div class="stat-number">9+</div>
                         <div class="stat-label">Years Academic</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">5+</div>
+                        <div class="stat-number">30+</div>
                         <div class="stat-label">Publications</div>
                     </div>
                 </div>
@@ -767,149 +801,107 @@
                 <h2 class="section-title">Career Journey</h2>
             </div>
             <div class="timeline">
-                <div class="timeline-item">
-                    <p class="timeline-date">January 2025 — Present</p>
-                    <p class="timeline-company">Kudan</p>
-                    <h3 class="timeline-role">Director of Engineering & Principal 3D Computer Vision Engineer</h3>
-                    <div class="timeline-desc">
-                        <p>Leading engineering teams and driving innovation in SLAM and perception systems for industrial applications.</p>
+                <!-- Kudan -->
+                <div class="timeline-company-group">
+                    <div class="timeline-company-header">
+                        <h3 class="timeline-company-name">Kudan</h3>
+                        <span class="timeline-company-duration">September 2018 — Present · 7+ years</span>
+                    </div>
+                    <div class="timeline-roles">
+                        <div class="timeline-item">
+                            <p class="timeline-date">January 2025 — Present</p>
+                            <h3 class="timeline-role">Director of Engineering & Principal 3D Computer Vision Engineer</h3>
+                            <div class="timeline-desc">
+                                <p>Leading engineering teams and driving innovation in SLAM and perception systems for industrial applications.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <p class="timeline-date">February 2024 — March 2025</p>
+                            <h3 class="timeline-role">Head of Software Development Team</h3>
+                            <div class="timeline-desc">
+                                <p>Managed software development initiatives and coordinated cross-functional engineering efforts.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <p class="timeline-date">April 2023 — January 2024</p>
+                            <h3 class="timeline-role">SLAM Team Lead</h3>
+                            <div class="timeline-desc">
+                                <p>Led specialised SLAM development team, overseeing technical direction and delivery of core algorithms.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <p class="timeline-date">July 2020 — March 2025</p>
+                            <h3 class="timeline-role">Senior 3D Computer Vision (SLAM) R&D Engineer</h3>
+                            <div class="timeline-desc">
+                                <p>Advanced R&D on state-of-the-art SLAM systems for industrial applications.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <p class="timeline-date">September 2018 — July 2020</p>
+                            <h3 class="timeline-role">3D Computer Vision (SLAM) R&D Engineer</h3>
+                            <div class="timeline-desc">
+                                <p>Developed state-of-the-art SLAM systems for industrial applications.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <p class="timeline-date">February 2024 — March 2025</p>
-                    <p class="timeline-company">Kudan</p>
-                    <h3 class="timeline-role">Head of Software Development Team</h3>
-                    <div class="timeline-desc">
-                        <p>Managed software development initiatives and coordinated cross-functional engineering efforts.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <p class="timeline-date">April 2023 — January 2024</p>
-                    <p class="timeline-company">Kudan</p>
-                    <h3 class="timeline-role">SLAM Team Lead</h3>
-                    <div class="timeline-desc">
-                        <p>Led specialised SLAM development team, overseeing technical direction and delivery of core algorithms.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <p class="timeline-date">September 2018 — July 2020</p>
-                    <p class="timeline-company">Kudan</p>
-                    <h3 class="timeline-role">3D Computer Vision (SLAM) R&D Engineer</h3>
-                    <div class="timeline-desc">
-                        <p>Developed state-of-the-art SLAM systems for industrial applications.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <p class="timeline-date">July 2014 — July 2018</p>
-                    <p class="timeline-company">University of Bristol</p>
-                    <h3 class="timeline-role">PhD Researcher — EPSRC SPHERE Project</h3>
-                    <div class="timeline-desc">
-                        <p>Conducted research in video monitoring work package. Also served as Teaching Support Assistant for Image Processing, Computer Vision, C Programming, and Signals courses.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <p class="timeline-date">September 2008 — July 2014</p>
-                    <p class="timeline-company">Razi University</p>
-                    <h3 class="timeline-role">Faculty Member & Lecturer</h3>
-                    <div class="timeline-desc">
-                        <p>Taught wide range of computer engineering topics from fundamentals to advanced AI and algorithm design.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <p class="timeline-date">August 2002 — February 2005</p>
-                    <p class="timeline-company">Hoorpendar Computer Technology Industries</p>
-                    <h3 class="timeline-role">Senior C++ Embedded Software Engineer</h3>
-                    <div class="timeline-desc">
-                        <p>Developed embedded systems for dams, power stations, and industrial facilities including:</p>
-                        <ul>
-                            <li>Data loggers for dam hydro-generator monitoring</li>
-                            <li>Programmable turbine water-gate controllers</li>
-                            <li>Fibre-optic data transmission systems</li>
-                            <li>Weather monitoring systems</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">03 — Skills</p>
-                <h2 class="section-title">Technical Expertise</h2>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Core Domains</h3>
-                    <ul class="skill-list">
-                        <li>Computer Vision</li>
-                        <li>SLAM Systems</li>
-                        <li>3D Perception</li>
-                        <li>Signal Processing</li>
-                        <li>Machine Learning</li>
-                        <li>Embedded Systems</li>
-                    </ul>
+                <!-- University of Bristol -->
+                <div class="timeline-company-group">
+                    <div class="timeline-company-header">
+                        <h3 class="timeline-company-name">University of Bristol</h3>
+                        <span class="timeline-company-duration">July 2014 — July 2018 · 4 years</span>
+                    </div>
+                    <div class="timeline-roles">
+                        <div class="timeline-item">
+                            <p class="timeline-date">July 2014 — July 2018</p>
+                            <h3 class="timeline-role">PhD Researcher — EPSRC SPHERE Project</h3>
+                            <div class="timeline-desc">
+                                <p>Conducted research in video monitoring work package. Also served as Teaching Support Assistant for Image Processing, Computer Vision, C Programming, and Signals courses.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Languages & Tools</h3>
-                    <ul class="skill-list">
-                        <li>C++ / Modern C++</li>
-                        <li>OpenCV</li>
-                        <li>MATLAB</li>
-                        <li>Python</li>
-                        <li>Git</li>
-                        <li>CMake</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Specialisations</h3>
-                    <ul class="skill-list">
-                        <li>Visual SLAM</li>
-                        <li>Sensor Fusion</li>
-                        <li>Real-time Systems</li>
-                        <li>Algorithm Design</li>
-                        <li>Research & Development</li>
-                        <li>Technical Leadership</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Publications Section -->
-    <section id="publications">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">04 — Publications</p>
-                <h2 class="section-title">Research Work</h2>
-            </div>
-            <div class="pub-list">
-                <div class="pub-item">
-                    <h3 class="pub-title">Remote, Depth-based Lung Function Assessment</h3>
-                    <p class="pub-meta">Computer Vision for Health Monitoring</p>
-                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="pub-link" target="_blank">View on Scholar →</a>
+                <!-- Razi University -->
+                <div class="timeline-company-group">
+                    <div class="timeline-company-header">
+                        <h3 class="timeline-company-name">Razi University</h3>
+                        <span class="timeline-company-duration">February 2005 — July 2014 · 9+ years</span>
+                    </div>
+                    <div class="timeline-roles">
+                        <div class="timeline-item">
+                            <p class="timeline-date">February 2005 — July 2014</p>
+                            <h3 class="timeline-role">Lecturer</h3>
+                            <div class="timeline-desc">
+                                <p>Taught wide range of computer engineering topics from fundamentals to advanced AI and algorithm design.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="pub-item">
-                    <h3 class="pub-title">Remote Pulmonary Function Testing — Computer Gaming in the Respiratory World</h3>
-                    <p class="pub-meta">Medical Imaging & Computer Vision</p>
-                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="pub-link" target="_blank">View on Scholar →</a>
-                </div>
-                <div class="pub-item">
-                    <h3 class="pub-title">Natural Colour Image Matting using Asynchronous Cellular Automata</h3>
-                    <p class="pub-meta">Image Processing</p>
-                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="pub-link" target="_blank">View on Scholar →</a>
-                </div>
-                <div class="pub-item">
-                    <h3 class="pub-title">Ant Colony Alpha Matte: A New Approach for Natural Image Matting</h3>
-                    <p class="pub-meta">Computer Vision & Optimisation</p>
-                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="pub-link" target="_blank">View on Scholar →</a>
-                </div>
-                <div class="pub-item">
-                    <h3 class="pub-title">Persian Sign Language Recognition using Rule-based Techniques and Neural Networks</h3>
-                    <p class="pub-meta">Pattern Recognition & Deep Learning</p>
-                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="pub-link" target="_blank">View on Scholar →</a>
+
+                <!-- Hoorpendar -->
+                <div class="timeline-company-group">
+                    <div class="timeline-company-header">
+                        <h3 class="timeline-company-name">Hoorpendar Computer Technology Industries</h3>
+                        <span class="timeline-company-duration">August 2002 — February 2005 · 2.5 years</span>
+                    </div>
+                    <div class="timeline-roles">
+                        <div class="timeline-item">
+                            <p class="timeline-date">February 2003 — February 2005</p>
+                            <h3 class="timeline-role">Senior C++ Embedded Software Engineer</h3>
+                            <div class="timeline-desc">
+                                <p>Developed embedded systems for dams, power stations, and industrial facilities including data loggers, turbine controllers, and fibre-optic communication systems.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <p class="timeline-date">August 2002 — February 2003</p>
+                            <h3 class="timeline-role">C++ Embedded Software Engineer</h3>
+                            <div class="timeline-desc">
+                                <p>Developed data communication platforms and weather monitoring systems for national infrastructure projects.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -919,7 +911,7 @@
     <section id="education">
         <div class="container">
             <div class="section-header">
-                <p class="section-label">05 — Education</p>
+                <p class="section-label">03 — Education</p>
                 <h2 class="section-title">Academic Background</h2>
             </div>
             <div class="edu-grid">
@@ -948,25 +940,124 @@
         </div>
     </section>
 
-    <!-- Awards Section -->
-    <section id="awards">
+    <!-- Publications Section -->
+    <section id="publications">
         <div class="container">
             <div class="section-header">
-                <p class="section-label">06 — Recognition</p>
-                <h2 class="section-title">Awards & Honours</h2>
+                <p class="section-label">04 — Publications</p>
+                <h2 class="section-title">Selected Research Work</h2>
             </div>
-            <div class="awards-list">
-                <div class="award-item">
-                    <div class="award-icon">★</div>
-                    <p class="award-text">1st Poster Award at 20th BMVA Computer Vision Summer School</p>
+            <div class="pub-list">
+                <div class="pub-item">
+                    <h3 class="pub-title">Depth-Based Whole Body Photoplethysmography in Remote Pulmonary Function Testing</h3>
+                    <p class="pub-desc">Introduces a novel depth-based photoplethysmography (dPPG) approach using two opposing RGB-D sensors to reduce motion artefacts in respiratory measurements. The method decouples trunk movements from respiratory motions, significantly improving accuracy of 11 clinical PFT measures compared to single-sensor approaches.</p>
+                    <p class="pub-meta">IEEE Transactions on Biomedical Engineering, 2018</p>
+                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=K09toccAAAAJ&citation_for_view=K09toccAAAAJ:Y0pCki6q_DkC" class="pub-link" target="_blank">View on Scholar →</a>
                 </div>
-                <div class="award-item">
-                    <div class="award-icon">★</div>
-                    <p class="award-text">University of Bristol Alumni Scholarship</p>
+                <div class="pub-item">
+                    <h3 class="pub-title">Remote, Depth-Based Lung Function Assessment</h3>
+                    <p class="pub-desc">Proposes a remote, non-invasive approach to pulmonary function testing using a depth sensor. By constructing 3D models of the chest and estimating volume variation, the method generates clinical spirometry measures (FVC, FEV1, VC, IC) validated against 85 patients, establishing that chest surface motion is linearly related to lung volume changes.</p>
+                    <p class="pub-meta">IEEE Transactions on Biomedical Engineering, 2017</p>
+                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=K09toccAAAAJ&citation_for_view=K09toccAAAAJ:2osOgNQ5qMEC" class="pub-link" target="_blank">View on Scholar →</a>
                 </div>
-                <div class="award-item">
-                    <div class="award-icon">★</div>
-                    <p class="award-text">Conference Best Paper Award (x3)</p>
+                <div class="pub-item">
+                    <h3 class="pub-title">Markerless Active Trunk Shape Modelling for Motion Tolerant Remote Respiratory Assessment</h3>
+                    <p class="pub-desc">Presents a vision-based, motion-tolerant approach for remote lung volume estimation during spirometry tests. Using temporal modelling of trunk shape from two opposing Kinects, the method extracts chest-surface respiratory patterns via PCA on geometrical features, enabling accurate assessment despite subject movement.</p>
+                    <p class="pub-meta">IEEE International Conference on Image Processing (ICIP), Athens, 2018</p>
+                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=K09toccAAAAJ&citation_for_view=K09toccAAAAJ:d1gkVwhDpl0C" class="pub-link" target="_blank">View on Scholar →</a>
+                </div>
+                <div class="pub-item">
+                    <h3 class="pub-title">3D Data Acquisition and Registration Using Two Opposing Kinects</h3>
+                    <p class="pub-desc">Presents an open-source data acquisition and calibration system using two opposing Kinect V2 sensors for dynamic 3D object reconstruction. The method estimates relative pose through calibration and registers point clouds at frame level, enabling accurate measurements validated on known-size objects and human subjects.</p>
+                    <p class="pub-meta">IEEE International Conference on 3D Vision (3DV), Stanford, 2016</p>
+                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=K09toccAAAAJ&citation_for_view=K09toccAAAAJ:9yKSN-GCB0IC" class="pub-link" target="_blank">View on Scholar →</a>
+                </div>
+                <div class="pub-item">
+                    <h3 class="pub-title">Toward Respiratory Assessment Using Depth Measurements from a Time-of-Flight Sensor</h3>
+                    <p class="pub-desc">Explores using consumer 3D time-of-flight cameras for remote respiratory monitoring. The study validates chest volume estimation during spirometry on 100 patients with various respiratory conditions, demonstrating accurate respiratory rate tracking and FVC estimation within ±1%, with potential for low-cost home monitoring.</p>
+                    <p class="pub-meta">Frontiers in Physiology, 2017</p>
+                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=K09toccAAAAJ&citation_for_view=K09toccAAAAJ:IjCSPb-OGe4C" class="pub-link" target="_blank">View on Scholar →</a>
+                </div>
+                <div class="pub-item">
+                    <h3 class="pub-title">Improving Ant Colony Optimisation for Brain MRI Image Segmentation and Brain Tumour Diagnosis</h3>
+                    <p class="pub-desc">Proposes an improved ant colony algorithm for medical image segmentation. The approach incorporates ant direction and tendency when calculating site selection probability, balancing directional influence with pheromone distribution. Applied to brain MRI segmentation and tumour diagnosis with enhanced efficiency.</p>
+                    <p class="pub-meta">IEEE Conference on Pattern Recognition and Image Analysis (PRIA), 2013</p>
+                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="pub-link" target="_blank">View on Scholar →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">05 — Skills</p>
+                <h2 class="section-title">Technical Expertise</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>SLAM & Localisation</h3>
+                    <ul class="skill-list">
+                        <li>Visual SLAM / Visual Odometry</li>
+                        <li>LiDAR SLAM / LiDAR Odometry</li>
+                        <li>Sensor Fusion (Camera, IMU, 2D/3D LiDAR)</li>
+                        <li>Sensor Fusion (Wheel Odometry, GNSS, INS)</li>
+                        <li>Loop Closure / Relocalisation / Place Recognition</li>
+                        <li>Bundle Adjustment / Pose Graph Optimisation</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>3D Perception & Vision</h3>
+                    <ul class="skill-list">
+                        <li>3D Reconstruction</li>
+                        <li>Point Cloud Processing</li>
+                        <li>Depth Estimation</li>
+                        <li>Multi-View Geometry</li>
+                        <li>Feature Detection & Matching</li>
+                        <li>Camera Calibration</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Programming & Frameworks</h3>
+                    <ul class="skill-list">
+                        <li>C++ (Modern C++11/14/17)</li>
+                        <li>Python</li>
+                        <li>OpenCV</li>
+                        <li>PCL (Point Cloud Library)</li>
+                        <li>Eigen / OpenGV</li>
+                        <li>CMake / Git</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Mathematical Foundations</h3>
+                    <ul class="skill-list">
+                        <li>Linear Algebra & Geometry</li>
+                        <li>Non-linear Optimisation</li>
+                        <li>Factor Graph Optimisation</li>
+                        <li>Probabilistic State Estimation</li>
+                        <li>Kalman Filtering (KF, EKF, ESKF, IEKF, IESKF)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Platforms & Hardware</h3>
+                    <ul class="skill-list">
+                        <li>RGB-D Sensors (Kinect, RealSense)</li>
+                        <li>LiDAR Systems</li>
+                        <li>Stereo Cameras</li>
+                        <li>Embedded Systems</li>
+                        <li>Real-time Systems</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Leadership</h3>
+                    <ul class="skill-list">
+                        <li>Technical Strategy</li>
+                        <li>Team Leadership</li>
+                        <li>R&D Management</li>
+                        <li>Technical Roadmap Planning</li>
+                        <li>Cross-functional Collaboration</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -976,7 +1067,7 @@
     <section id="contact">
         <div class="container">
             <div class="section-header">
-                <p class="section-label">07 — Contact</p>
+                <p class="section-label">06 — Contact</p>
                 <h2 class="section-title">Get In Touch</h2>
             </div>
             <div class="contact-content">
@@ -984,10 +1075,22 @@
                     Interested in collaborating on computer vision projects, discussing SLAM technologies, 
                     or exploring research opportunities? I'd love to hear from you.
                 </p>
-                <a href="/cdn-cgi/l/email-protection#acdfc3c0c9c5c1cdc2c59d9a9f95eccbc1cdc5c082cfc3c1" class="contact-email"><span class="__cf_email__" data-cfemail="9fecf0f3faf6f2fef1f6aea9aca6dff8f2fef6f3b1fcf0f2">[email&#160;protected]</span></a>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/vahidsoleimani/" class="social-link" target="_blank">LinkedIn</a>
-                    <a href="https://scholar.google.com/citations?user=K09toccAAAAJ" class="social-link" target="_blank">Google Scholar</a>
-                    <a href="https://github.com/BristolVisualPFT/3D_Data_Acquisition_Registration_Using_Kinects" class="social-link" target="_blank">GitHub</a>
+                <div class="contact-buttons">
+                    <a href="#" class="contact-btn primary" onclick="window.location.href='mai'+'lto:'+'soleimani1639'+'@'+'gmail.com'; return false;">Email</a>
+                    <a href="https://www.linkedin.com/in/vahidsoleimani/" class="contact-btn" target="_blank">LinkedIn</a>
+                    <a href="https://x.com/soleimani_v" class="contact-btn" target="_blank">X</a>
                 </div>
-        
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Vahid Soleimani. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+  
